@@ -16,14 +16,21 @@ dotenv.config();
 //Connect to DB
 connectDB();
 
+//Middlewares
 app.use(logger("dev"));
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({  extended: true }));
 app.use(cors());
 
+//Test Route
 app.get("/", (req, res) => {
     res.send("API is running....");
 });
+
+
+//Import Routes
+app.use("/api/recipe", require('./routes/RecipeRoute'));
+
 
 const PORT = process.env.PORT || 5001;
 
