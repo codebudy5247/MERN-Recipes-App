@@ -43,3 +43,15 @@ exports.getRecipe = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 }
+
+//Get Recipe By Id
+exports.getRecipeById = async (req, res) => {
+  
+  const post = await Recipe.findById(req.params.id);
+
+  if (post) {
+    res.json(post);
+  } else {
+    res.status(404).json({ message: error.message });
+  }
+};
