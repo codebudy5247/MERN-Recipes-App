@@ -1,43 +1,50 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button } from "react-bootstrap";
-import Recipe from "../Components/RecipeCard";
+
+import Post from "../Components/Recipe";
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
-import { getRecipes } from "../Redux/Action/RecipeAction";
-import { RECIPE_CREATE_RESET } from "../Redux/Action/actionTypes";
+
+import { getPosts } from "../Redux/Action/RecipeAction";
+
 
 const Home = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const recipeList = useSelector((state) => state.recipeList);
-    const { loading, error, recipes } = recipeList;
-    console.log(recipeList);
+  const postList = useSelector((state) => state.postList);
+  const { loading, error, posts } = postList;
+  console.log(postList);
 
-    useEffect(() => {
-        dispatch(getRecipes());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-    return (
-        <>
-        <h1>Latest Recipes</h1>
+  const createPostHandler = () => {
+    dispatch(getPosts());
+  };
+  return (
+    <>
+
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Col>
-            {recipes && recipes.map((recipe) => (
-              <Row key={recipe._id} >
-                <Recipe recipe={recipe} />
-              </Row>
-            ))}
+        <Row>
+        {posts.map((post) => (
+          <Col key={post._id} sm={12} md={6} lg={4} xl={3}>
+            <Post post={post} />
           </Col>
-        </>
-      )}
-        </>
-    )
-}
+        ))}
+      </Row>
+      
+    </>
+  )}
 
-export default Home
+    </>
+  );
+};
+
+export default Home;

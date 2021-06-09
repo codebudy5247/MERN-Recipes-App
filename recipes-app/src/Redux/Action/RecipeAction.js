@@ -1,36 +1,69 @@
+import axios from "axios";
 import {
-    RECIPE_LIST_REQUEST,
-    RECIPE_LIST_SUCCESS,
-    RECIPE_LIST_FAIL,
-    RECIPE_DETAILS_REQUEST,
-    RECIPE_DETAILS_SUCCESS,
-    RECIPE_DETAILS_FAIL,
-    RECIPE_CREATE_REQUEST,
-    RECIPE_CREATE_SUCCESS,
-    RECIPE_CREATE_FAIL,
+  POST_LIST_REQUEST,
+  POST_LIST_SUCCESS,
+  POST_LIST_FAIL,
+  POST_DETAILS_REQUEST,
+  POST_DETAILS_SUCCESS,
+  POST_DETAILS_FAIL,
+  POST_CREATE_REQUEST,
+  POST_CREATE_SUCCESS,
+  POST_CREATE_FAIL,
+  POST_UPDATE_REQUEST,
+  POST_UPDATE_SUCCESS,
+  POST_UPDATE_FAIL,
+  POST_UPDATE_RESET,
+} from "./actionTypes";
 
-} from "./actionTypes.js";
 
-import * as api from "../../APIs/index.js";
 
 //Get All Recipes
-export const getRecipes = () => async (dispatch) => {
+export const getPosts = () => async (dispatch) => {
     try {
-        dispatch({ type: RECIPE_LIST_REQUEST });
-        const { data } = await api.fetchRecipes();
-        console.log(data)
-        dispatch({
-            type: RECIPE_LIST_SUCCESS,
-            payload: data,
-        });
+      dispatch({ type: POST_LIST_REQUEST });
+      const { data } = await axios.get(
+        `https://recipes-api5.herokuapp.com/api/recipe`
+      );
+      console.log(data);
+      dispatch({
+        type: POST_LIST_SUCCESS,
+        payload: data,
+      });
     } catch (error) {
-        console.log(error.message);
-        dispatch({
-            type: RECIPE_LIST_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        });
+      console.log(error.message);
+      dispatch({
+        type: POST_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
     }
+  };
+
+//Create Recipe
+export const AddPost = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: POST_CREATE_REQUEST,
+    });
+    const { data } = await axios.post(
+      "https://recipes-api5.herokuapp.com/api/recipe",
+      {},
+    );
+    dispatch({
+      type: POST_CREATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: POST_CREATE_FAIL,
+      payload: message,
+    });
+  }
 };
