@@ -1,6 +1,6 @@
 ## Demo
 
-[Visit Website](https://recipe-app5247.netlify.app/)
+[Visit Website](https://festive-heisenberg-6cbd44.netlify.app/)
 
 ##  Technologies Used
 
