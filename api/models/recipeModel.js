@@ -8,24 +8,24 @@ const recipeSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        list_of_ingredients: [{
-            ingredient_name: {
+        list_of_ind: [{
+            ind_name:{
                 type: String,
-
-
-
+                required: true,
+               
+              
             },
-            ingredient_quantity: {
+            ind_quantity:{
                 type: Number,
-
-
-            },
-            ingredient_unit: {
+                required: true,
+             
+            } ,
+            ind_unit:{
                 type: String,
-
-
-            }
-        }],
+                required: true,
+             
+            }      
+    }],
 
 
         step_of_cook: {
