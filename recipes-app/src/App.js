@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Components/Topbar"
 import Home from "./Components/Home"
 import Form from "./Components/Form"
+import PostDetails from "./Components/RecipeDetails"
+
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/create-recipe" component={Form} />
+            <Route exact path="/post/:id" component={PostDetails} />
           </Switch>
         
         

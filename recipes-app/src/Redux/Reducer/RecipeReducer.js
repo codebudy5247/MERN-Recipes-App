@@ -43,3 +43,19 @@ export const postCreateReducer = (state = {}, action) => {
       return state
   }
 }
+
+export const postDetailsReducer = (
+  state = { post: [] },
+  action
+) => {
+  switch (action.type) {
+    case POST_DETAILS_REQUEST:
+      return { ...state, loading: true }
+    case POST_DETAILS_SUCCESS:
+      return { loading: false, post: action.payload }
+    case POST_DETAILS_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+ }

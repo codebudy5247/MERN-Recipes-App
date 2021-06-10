@@ -67,3 +67,27 @@ export const AddPost = () => async (dispatch, getState) => {
     });
   }
 };
+
+//Get Recipe By Id
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: POST_DETAILS_REQUEST });
+
+    const { data } = await axios.get(
+      `https://recipes-api5.herokuapp.com/api/recipe/${id}`
+    );
+    console.log(data);
+    dispatch({
+      type: POST_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
