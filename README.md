@@ -1,20 +1,21 @@
 ## Demo
 
-[Visit Website](https://online-shop22.herokuapp.com/)
+[Visit Website](https://recipe-app5247.netlify.app/)
 
 ##  Technologies Used
 
 * [Node](https://nodejs.org/en/) - Used for backend
 * [Express](https://nodejs.org/en/) - Used for backend
-* [JWT](https://nodejs.org/en/) - Used for Authentication
 * [Mongodb](https://www.mongodb.com/) - Database
+* [ReactJs]
+* [Redux]
 
 
 ## Installation
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/codebudy5247/Eshop`
+- Clone this repo to your local machine using `https://github.com/codebudy5247/MERN-Recipes-App`
 
 ### Setup
 
